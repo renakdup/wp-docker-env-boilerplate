@@ -3,9 +3,10 @@ version: '3'
 services:
 
   nginx:
+    restart: always
     build: ./docker/nginx
     ports:
-      - '8080:80'
+      - $NGINX_PORT:80
     volumes:
       - ./:/app
       - ./docker/nginx/nginx.conf:/etc/nginx/nginx.conf
@@ -14,7 +15,32 @@ services:
       - php
 
   php:
+    restart: always
     build: ./docker/php
     volumes:
       - ./:/app
 
+  mysql:
+    restart: always
+    build: ./docker/mysql
+    command: --default-authentication-plugin=mysql_native_password
+    environment:
+      TZ: Europe/Moscow
+      MYSQL_DATABASE: $MYSQL_DATABASE
+      MYSQL_USER: $MYSQL_USER
+      MYSQL_PASSWORD: $MYSQL_PASSWORD
+      MYSQL_ROOT_PASSWORD: $MYSQL_ROOT_PASSWORD
+    volumes:
+      - ./docker/mysql/data:/var/lib/mysql
+    ports:
+      - $MYSQL_PORT:3307
+
+  phpmyadmin:
+    restart: always
+    image: phpmyadmin:5
+    ports:
+      - $PMA_PORT:80
+    environment:
+      PMA_HOST: mysql
+      PMA_USER: $MYSQL_USER
+      PMA_PASSWORD: $MYSQL_PASSWORD
