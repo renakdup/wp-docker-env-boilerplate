@@ -18,7 +18,3 @@ services:
     volumes:
       - ./:/app
 
-networks:
-  default:
-    external:
-      name: localdev
