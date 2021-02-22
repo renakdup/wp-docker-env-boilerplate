@@ -1,0 +1,11 @@
+{
+    "name": "renakdup/wp-docker-boilerplate",
+    "description": "Docker Environment Example",
+    "authors": [
+        {
+            "name": "Andrew Pisarevsky",
+            "email": "renakdup@gmail.com"
+        }
+    ],
+    "require": {}
+}
