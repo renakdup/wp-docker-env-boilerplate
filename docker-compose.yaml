@@ -16,16 +16,20 @@ services:
 
   php:
     restart: always
-    build: ./docker/php
+    build:
+      context: ./docker/php
+      args:
+        UID: $UID
+        GUID: $GUID
     volumes:
       - ./:/app
 
   mysql:
     restart: always
     build: ./docker/mysql
-    command: --default-authentication-plugin=mysql_native_password
+    #command: --default-authentication-plugin=mysql_native_password
     environment:
-      TZ: Europe/Moscow
+      TZ: $MYSQL_TZ
       MYSQL_DATABASE: $MYSQL_DATABASE
       MYSQL_USER: $MYSQL_USER
       MYSQL_PASSWORD: $MYSQL_PASSWORD

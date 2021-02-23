@@ -1,20 +1,35 @@
 
 # Configuration files
+##################################
 .env
 docker/mysql/data
-/vendor/
+vendor/
 
 
 # Project public files
-/public/*
+##################################
 !/public/index.php
+
+public/*
+!public/wp-content
+public/wp-content/*
+
+!public/wp-content/plugins/
+public/wp-content/plugins/*
+#!public/wp-content/plugins/PluginName
+
+!public/wp-content/themes/
+public/wp-content/themes/*
+#!public/wp-content/themes/ThemeName
+
+
 
 
 # Files of the editor and other software
 .idea
 
-# OS generated files #
-######################
+# OS generated files
+##################################
 .DS_Store
 .DS_Store?
 ._*

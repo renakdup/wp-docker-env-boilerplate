@@ -1,6 +1,8 @@
 include .env
 export
 
+UID = $(shell id -u)
+GUID = $(shell id -g)
 
 # Docker
 d.test:
@@ -11,6 +13,9 @@ d.ps:
 
 d.up:
 	docker-compose up -d
+
+d.restart: d.down
+	@$(MAKE) up
 
 d.down:
 	docker-compose down
@@ -54,5 +59,5 @@ wp:
 
 
 # It is used for fixing access right errors for files on OS-side, has created on docker-side.
-fix-access-right-files:
-	sudo chown -R $$OS_USER:$$OS_GROUP .
+fix-access-right-for:
+	sudo chown -R $(USER):$(shell  id -g -n) $(filter-out $@,$(MAKECMDGOALS))

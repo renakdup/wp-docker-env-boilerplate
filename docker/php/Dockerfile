@@ -4,10 +4,16 @@ LABEL version="0.1"
 LABEL maintaner="Andrew Pisarevsky <renakdup@gmail.com>"
 LABEL source_url="https://github.com/renakdup/wp-docker-boilerplate-env"
 
-RUN apt-get update
+ARG UID
+ARG GUID
+ARG USER=www-data
+RUN usermod -u $UID $USER && groupmod -g $GUID $USER
 
-# Configuring OS
-RUN echo 'alias ll="ls -l --color"' >> ~/.bashrc
+# Configuring OS#
+RUN echo 'alias ll="ls -l --color"' >>  /etc/bash.bashrc
+RUN chown -R $USER:$USER /var/www
+
+RUN apt-get update
 
 # OS Utilities
 RUN apt-get -y install \
@@ -48,4 +54,7 @@ RUN curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli
     mv wp-cli.phar /usr/local/bin/wp
 
 WORKDIR /app
-CMD ["php-fpm"]
+
+USER $USER
+
+
