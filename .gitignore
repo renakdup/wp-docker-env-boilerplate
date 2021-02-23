@@ -1,5 +1,24 @@
-.idea
 
+# Configuration files
 .env
 docker/mysql/data
 /vendor/
+
+
+# Project public files
+/public/*
+!/public/index.php
+
+
+# Files of the editor and other software
+.idea
+
+# OS generated files #
+######################
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db

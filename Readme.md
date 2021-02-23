@@ -9,6 +9,8 @@ Github: https://github.com/renakdup
 2. Run command `Make d.up`
 3. Visit site [wp-docker-boilerplate.local](http://wp-docker-boilerplate.local)
 
+If you have a problems with access right for files, try using the next command for fixing it:  
+`sudo chown USER:GROUP FILE`
 
 If you want change domain, you need to change `server_name` in `./docker/nginxconf.d/default.conf`.
 

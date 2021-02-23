@@ -1,5 +1,11 @@
+include .env
+export
+
 
 # Docker
+d.test:
+	docker run hello-world
+
 d.ps:
 	docker ps
 
@@ -22,4 +28,31 @@ d.recreate-all-containers:
 	docker-compose up -d --force-recreate
 
 d.bash:
-	docker exec -it $(filter-out $@,$(MAKECMDGOALS)) bash
+	docker-compose exec $(filter-out $@,$(MAKECMDGOALS)) bash
+
+
+# Composer
+c:
+	docker-compose exec php composer $(filter-out $@,$(MAKECMDGOALS))
+
+c.install:
+	docker-compose exec php composer install $(filter-out $@,$(MAKECMDGOALS))
+
+c.install-production:
+	docker-compose exec php composer install --no-dev
+
+c.update:
+	docker-compose exec php composer update $(filter-out $@,$(MAKECMDGOALS))
+
+c.update-production:
+	docker-compose exec php composer update --no-dev
+
+
+# WP-CLI
+wp:
+	docker-compose exec php wp --allow-root $(filter-out $@,$(MAKECMDGOALS))
+
+
+# It is used for fixing access right errors for files on OS-side, has created on docker-side.
+fix-access-right-files:
+	sudo chown -R $$OS_USER:$$OS_GROUP .
