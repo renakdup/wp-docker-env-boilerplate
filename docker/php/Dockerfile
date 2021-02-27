@@ -9,7 +9,7 @@ ARG GUID
 ARG USER=www-data
 RUN usermod -u $UID $USER && groupmod -g $GUID $USER
 
-# Configuring OS#
+# Configuring OS
 RUN echo 'alias ll="ls -l --color"' >>  /etc/bash.bashrc
 RUN chown -R $USER:$USER /var/www
 
