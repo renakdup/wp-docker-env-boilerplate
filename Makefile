@@ -41,6 +41,18 @@ d.bash:
 	docker-compose exec $(filter-out $@,$(MAKECMDGOALS)) bash
 
 
+# MySQL
+mysql.export:
+	docker-compose exec mysql bash -c "mysqldump -uroot -p${MYSQL_ROOT_PASSWORD} ${MYSQL_DATABASE} > backup-`date +"\%Y.\%m.\%d_\%H-\%M-\%s"`.sql \
+	&& chown -R ${UID}:${GUID} ./*"
+
+mysql.import:
+	docker-compose exec mysql mysql -uroot -p${MYSQL_ROOT_PASSWORD} ${MYSQL_DATABASE} < import_db.sql
+
+mysql.connect:
+	docker-compose exec mysql mysql -uroot -p${MYSQL_ROOT_PASSWORD} ${MYSQL_DATABASE}
+
+
 # Composer
 c:
 	docker-compose exec php composer $(filter-out $@,$(MAKECMDGOALS))

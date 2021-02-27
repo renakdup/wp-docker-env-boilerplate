@@ -26,8 +26,11 @@ services:
 
   mysql:
     restart: always
-    build: ./docker/mysql
-    #command: --default-authentication-plugin=mysql_native_password
+    build:
+      context: ./docker/mysql
+      args:
+        UID: $UID
+        GUID: $GUID
     environment:
       TZ: $MYSQL_TZ
       MYSQL_DATABASE: $MYSQL_DATABASE
@@ -35,7 +38,8 @@ services:
       MYSQL_PASSWORD: $MYSQL_PASSWORD
       MYSQL_ROOT_PASSWORD: $MYSQL_ROOT_PASSWORD
     volumes:
-      - ./docker/mysql/data:/var/lib/mysql
+      - mysql-data:/var/lib/mysql
+      - ./docker/mysql/backup/:/backup
     ports:
       - $MYSQL_PORT:3307
 
@@ -50,3 +54,6 @@ services:
       PMA_PASSWORD: $MYSQL_PASSWORD
     depends_on:
       - mysql
+
+volumes:
+  mysql-data:

@@ -2,8 +2,10 @@
 # Configuration files
 ##################################
 .env
-docker/mysql/data
+docker/mysql/backup/*
+!docker/mysql/backup/.gitkeep
 vendor/
+
 
 
 # Project public files

@@ -1,16 +1,23 @@
 # Docker Environment Boilerplate for WordPress
 
-Author: renakdup@gmail.com  
-Github: https://github.com/renakdup  
-
 ## Instructions
 1. You need to add the string to `hosts` file your OS:  
 `127.0.0.1 	wp-docker-boilerplate.local`
 2. Run command `make env.create`, then fill the config data.   
 2. Run command `make d.up`
 3. Run command `make c.install` for installing dependencies and WordPress
-4. Visit site [wp-docker-boilerplate.local](http://wp-docker-boilerplate.local)
+4. Visit site [wp-docker-boilerplate.local](http://wp-docker-boilerplate.local)   
 
+### Import/Export DB
+
+#### Import  
+You need to put on your file to `./docker/mysql/backup` with the name `import_db.sql`, then you need to run the command `make mysql.import`.
+
+#### Export
+You need to run the command `make mysql.export`, then you will see the exported file by `/docker/mysql/backup` path.
+
+---
+### Other cases
 If you have a problems with access right for files, try using the next command for fixing it:
 
 ```
