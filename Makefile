@@ -62,6 +62,9 @@ c.update-production:
 wp:
 	docker-compose exec php wp --allow-root $(filter-out $@,$(MAKECMDGOALS))
 
+wp.activate-theme:
+	@$(MAKE) wp theme activate ${WP_THEME}
+
 
 # It is used for fixing access right errors for files on OS-side, has created on docker-side.
 fix-access-right-for:
