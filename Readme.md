@@ -6,7 +6,7 @@ Github: https://github.com/renakdup
 ## Instructions
 1. You need to add the string to `hosts` file your OS:  
 `127.0.0.1 	wp-docker-boilerplate.local`
-2.    
+2. Run command `make env.create`, then fill the config data.   
 2. Run command `make d.up`
 3. Run command `make c.install` for installing dependencies and WordPress
 4. Visit site [wp-docker-boilerplate.local](http://wp-docker-boilerplate.local)
