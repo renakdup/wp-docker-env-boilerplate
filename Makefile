@@ -70,6 +70,20 @@ c.update-production:
 	docker-compose exec php composer update --no-dev
 
 
+# Front
+npm.install:
+	docker-compose run --rm node npm install
+
+npm.ci:
+	docker-compose run --rm node npm ci
+
+npm.update:
+	docker-compose run --rm node npm update
+
+npm.webpack-start:
+	docker-compose run --rm node npm start
+
+
 # WP-CLI
 wp:
 	docker-compose exec php wp --allow-root $(filter-out $@,$(MAKECMDGOALS))

@@ -5,6 +5,7 @@
 docker/mysql/backup/*
 !docker/mysql/backup/.gitkeep
 vendor/
+node_modules/
 
 
 
@@ -28,6 +29,7 @@ public/wp-content/themes/*
 
 
 # Files of the editor and other software
+##################################
 .idea
 
 # OS generated files

@@ -1,7 +1,6 @@
 version: '3'
 
 services:
-
   nginx:
     restart: always
     build: ./docker/nginx
@@ -54,6 +53,16 @@ services:
       PMA_PASSWORD: $MYSQL_PASSWORD
     depends_on:
       - mysql
+
+# You need to define the "npm start" command in the package.json file in the "./ directory", or comment out
+# the string "npm start" in the Dockerfile.
+#  node:
+#    build: ./docker/node
+#    ports:
+#      - "3000:3000"
+#    volumes_from:
+#      - php
+
 
 volumes:
   mysql-data:
