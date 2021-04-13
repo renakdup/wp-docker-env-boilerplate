@@ -4,11 +4,6 @@ export
 UID = $(shell id -u)
 GUID = $(shell id -g)
 
-# Build
-env.create:
-	@echo $(shell docker/sh/create.env.sh)
-
-
 # Docker
 d.test:
 	docker run hello-world
