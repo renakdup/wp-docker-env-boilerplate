@@ -4,10 +4,15 @@ export
 UID = $(shell id -u)
 GUID = $(shell id -g)
 
-# Docker
-d.test:
-	docker run hello-world
+# Build
+build: d.up
+	@$(MAKE) c.install
 
+build.new: d.up
+	@$(MAKE) c.install
+	@$(MAKE) wp.core.download
+
+# Docker
 d.ps:
 	docker ps
 
@@ -34,6 +39,9 @@ d.recreate-all-containers:
 
 d.bash:
 	docker-compose exec $(filter-out $@,$(MAKECMDGOALS)) bash
+
+d.test:
+	docker run hello-world
 
 
 # MySQL
@@ -86,6 +94,11 @@ wp:
 wp.activate-theme:
 	@$(MAKE) wp theme activate ${WP_THEME}
 
+wp.core.download:
+	docker-compose exec php wp core download $(filter-out $@,$(MAKECMDGOALS))
+
+wp.core.install:
+	docker-compose exec php wp core install --url=${HH_SITE_DOMAIN} --title=${HH_INSTALL_ADMIN_TITLE} --admin_user=${HH_INSTALL_ADMIN_LOGIN} --admin_email=${HH_INSTALL_ADMIN_EMAIL} --admin_password=${HH_INSTALL_ADMIN_PASSWORD}
 
 # It is used for fixing access right errors for files on OS-side, has created on docker-side.
 fix-access-right-for:
