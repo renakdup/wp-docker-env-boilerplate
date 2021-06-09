@@ -1,5 +1,12 @@
 # Docker Environment Boilerplate for WordPress
 
+### Docker configuration:
+- Nginx 1.19 ver
+- PHP 7.4 ver
+- MySQL 5.6 ver
+- PhpMyAdmin 5 ver
+- Node 15 ver
+
 ## Instructions
 1. You need to add the string to `hosts` file your OS:  
 `127.0.0.1 	wp-docker-boilerplate.local`
