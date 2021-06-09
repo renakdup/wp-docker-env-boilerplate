@@ -27,6 +27,10 @@ require_once __DIR__ . '/vendor/autoload.php';
  * @package WordPress
  */
 
+/** Multisite */
+define( 'WP_ALLOW_MULTISITE', $_ENV['WP_ALLOW_MULTISITE'] );
+
+
 // ** MySQL settings - You can get this info from your web host ** //
 /** The name of the database for WordPress */
 define( 'DB_NAME', $_ENV['WP_DB_NAME'] );
