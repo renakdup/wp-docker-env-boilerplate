@@ -6,7 +6,7 @@ server {
 
     index index.php;
 
-	server_name wp-docker-boilerplate.local;
+	server_name ${NGINX_HOST};
 
     location = /favicon.ico {
             log_not_found off;
