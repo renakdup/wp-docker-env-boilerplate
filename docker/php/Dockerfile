@@ -44,6 +44,9 @@ RUN docker-php-ext-install \
     opcache \
     exif \
     zip
+    
+# fix memory limit for php-cli
+RUN echo 'memory_limit = -1' >> /usr/local/etc/php/conf.d/docker-php-memlimit.ini
 
 # Install Composer
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
