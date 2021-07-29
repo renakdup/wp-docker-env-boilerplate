@@ -8,10 +8,6 @@ GUID = $(shell id -g)
 build: d.up
 	@$(MAKE) c.install
 
-build.new: d.up
-	@$(MAKE) c.install
-	@$(MAKE) wp.core.download
-
 # Docker
 d.ps:
 	docker ps
@@ -42,6 +38,10 @@ d.bash:
 
 d.test:
 	docker run hello-world
+
+
+connect.php:
+	docker exec php
 
 
 # MySQL
@@ -90,9 +90,6 @@ npm.webpack-start:
 # WP-CLI
 wp:
 	docker-compose exec php wp --allow-root $(filter-out $@,$(MAKECMDGOALS))
-
-wp.activate-theme:
-	@$(MAKE) wp theme activate ${WP_THEME}
 
 wp.core.download:
 	docker-compose exec php wp core download $(filter-out $@,$(MAKECMDGOALS))
