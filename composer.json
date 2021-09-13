@@ -8,12 +8,9 @@
         }
     ],
     "require": {
-        "johnpbloch/wordpress-core-installer": "^2.0",
-        "johnpbloch/wordpress": "5.6.2",
         "vlucas/phpdotenv": "^5.3"
     },
-    "extra": {
-        "wordpress-install-dir": "public/"
+    "scripts": {
+        "wp-install": "wp core download"
     }
 }
-

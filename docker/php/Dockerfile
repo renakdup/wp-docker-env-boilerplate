@@ -49,7 +49,7 @@ RUN docker-php-ext-install \
 RUN echo 'memory_limit = -1' >> /usr/local/etc/php/conf.d/docker-php-memlimit.ini
 
 # Install Composer
-RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+RUN wget https://getcomposer.org/download/2.0.1/composer.phar && chmod +x composer.phar && mv composer.phar /usr/local/bin/composer
 
 # Install WP-CLI
 RUN curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar && \

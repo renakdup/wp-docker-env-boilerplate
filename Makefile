@@ -7,6 +7,7 @@ GUID = $(shell id -g)
 # Build
 build: d.up
 	@$(MAKE) c.install
+	@$(MAKE) wp.core.download
 
 # Docker
 d.ps:
@@ -41,7 +42,7 @@ d.test:
 
 
 connect.php:
-	docker exec php
+	docker-compose exec php bash
 
 
 # MySQL
@@ -91,8 +92,11 @@ npm.webpack-start:
 wp:
 	docker-compose exec php wp --allow-root $(filter-out $@,$(MAKECMDGOALS))
 
+wp.core-clean.download:
+	docker-compose exec php wp core download --skip-content --force --version=${WP_CORE_VERSION} --locale=${WP_CORE_LOCALE}
+
 wp.core.download:
-	docker-compose exec php wp core download $(filter-out $@,$(MAKECMDGOALS))
+	docker-compose exec php wp core download --force --version=${WP_CORE_VERSION} --locale=${WP_CORE_LOCALE}
 
 wp.core.install:
 	docker-compose exec php wp core install --url=${HH_SITE_DOMAIN} --title=${HH_INSTALL_ADMIN_TITLE} --admin_user=${HH_INSTALL_ADMIN_LOGIN} --admin_email=${HH_INSTALL_ADMIN_EMAIL} --admin_password=${HH_INSTALL_ADMIN_PASSWORD}

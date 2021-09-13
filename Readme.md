@@ -19,10 +19,6 @@
     
     # run docker project.
     make d.up
-    
-    # for installing dependencies and WordPress
-    # you can change WordPress version in composer.json file
-    make c.install  
 ```
 2. Visit site [wp-docker-boilerplate.local](http://wp-docker-boilerplate.local)   
 
