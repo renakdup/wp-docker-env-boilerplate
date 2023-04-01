@@ -20,7 +20,7 @@ d.restart: d.down
 	@$(MAKE) up
 
 d.down:
-	docker-compose down
+	docker-compose down --remove-orphans
 
 d.build-image:
 	docker-compose up -d --no-deps --build $(filter-out $@,$(MAKECMDGOALS))
