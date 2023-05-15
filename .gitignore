@@ -2,6 +2,7 @@
 # Configuration files
 ##################################
 .env
+docker-compose.override.yaml
 docker/mysql/backup/*
 !docker/mysql/backup/.gitkeep
 vendor/
@@ -11,9 +12,8 @@ node_modules/
 
 # Project public files
 ##################################
-!/public/index.php
-
 public/*
+!/public/index.php
 !public/wp-content
 public/wp-content/*
 

@@ -15,6 +15,8 @@ services:
       - ./docker/nginx/templates:/etc/nginx/templates
     depends_on:
       - php
+    networks:
+      - rd-network
 
   php:
     restart: always
@@ -23,8 +25,11 @@ services:
       args:
         UID: $UID
         GUID: $GUID
+        PHP_VER: $PHP_VER
     volumes:
       - ./:/app
+    networks:
+      - rd-network
 
   mysql:
     restart: always
@@ -44,6 +49,8 @@ services:
       - ./docker/mysql/backup/:/backup
     ports:
       - $MYSQL_PORT:3307
+    networks:
+      - rd-network
 
   phpmyadmin:
     restart: always
@@ -56,16 +63,13 @@ services:
       PMA_PASSWORD: $MYSQL_PASSWORD
     depends_on:
       - mysql
-
-# You need to define the "npm start" command in the package.json file in the "./ directory", or comment out
-# the string "npm start" in the Dockerfile.
-#  node:
-#    build: ./docker/node
-#    ports:
-#      - "3000:3000"
-#    volumes_from:
-#      - php
-
+    networks:
+      - rd-network
 
 volumes:
   mysql-data:
+
+
+networks:
+  rd-network:
+    driver: bridge

@@ -1,21 +1,20 @@
 # Docker Environment Boilerplate for WordPress
 
 ### Docker configuration:
-- Nginx 1.19
+- Nginx 1.20
 - PHP 7.4
 - Composer > 2.1  
 - MySQL 5.6
 - PhpMyAdmin 5
-- Node 15
+- Node 16.14.2
 - WP-CLI > 2.5.0
 
 ## Instructions
 1. You need to add the string to `hosts` file your OS:  
 `127.0.0.1 	wp-docker-boilerplate.local`
-```bash
-    # create env file
-    docker/sh/create.env.sh
-    # !!! You must fill variables in .env file.
+```bash 
+    # copy & paste and fill variables
+    cp .env.dist .env
     
     # run docker project.
     make d.up
@@ -44,17 +43,16 @@ or
 If you want change domain, you need to change `server_name` in `./docker/nginxconf.d/default.conf`.
 
 
-##  If you have troubles with VPN
-1. If you use VPN, you need to disable VPN and run command:  
-`docker network create localdev`
-2. After It you can run your VPN.
-3. Add the code at end of the file:
-   ```networks:
-    default:
-     external:
-      name: localdev
-3. Make to  
- `docker-compose up -d`
- 
+###  Q/A  
+If you get next error on MacOS  
+```failed to solve with frontend dockerfile.v0: failed to create LLB definition: no match for platform in manifest sha256:20575ecebe6216036d25dab5903808211f1e9ba63dc7825ac20cb975e34cfcae: not found```
+
+create `docker-compose.override.yml` in the project and add following lines:
+```
+services:
+  mysql:
+    platform: linux/amd64
+    image: mysql:5.6 #or any other version
+``` 
  
 

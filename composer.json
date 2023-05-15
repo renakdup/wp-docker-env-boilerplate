@@ -1,16 +1,13 @@
 {
     "name": "renakdup/wp-docker-boilerplate",
-    "description": "Docker Environment Example",
+    "description": "Docker Boilerplate Environment for WordPress",
     "authors": [
         {
-            "name": "Andrew Pisarevsky",
+            "name": "Andrei Pisarevskii",
             "email": "renakdup@gmail.com"
         }
     ],
     "require": {
         "vlucas/phpdotenv": "^5.3"
-    },
-    "scripts": {
-        "wp-install": "wp core download"
     }
 }

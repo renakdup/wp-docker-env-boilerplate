@@ -1,7 +1,9 @@
-FROM php:7.4-fpm
+ARG PHP_VER
+
+FROM php:${PHP_VER}-fpm
 
 LABEL version="0.1"
-LABEL maintaner="Andrew Pisarevsky <renakdup@gmail.com>"
+LABEL maintaner="Andrei Pisarevskii <renakdup@gmail.com>"
 LABEL source_url="https://github.com/renakdup/wp-docker-boilerplate-env"
 
 ARG UID
