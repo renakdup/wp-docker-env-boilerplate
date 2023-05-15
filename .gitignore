@@ -13,7 +13,6 @@ node_modules/
 # Project public files
 ##################################
 public/*
-!/public/index.php
 !public/wp-content
 public/wp-content/*
 
