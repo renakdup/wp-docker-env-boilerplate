@@ -6,9 +6,9 @@ upstream php {
 
 server {
         ## Your website name goes here.
-        server_name domain.tld;
+        server_name ${NGINX_SITE_DOMAIN};
         ## Your only path reference.
-        root /var/www/wordpress;
+        root /app/public;
         ## This should be in your http block and if it is, it's not needed here.
         index index.php;
 

@@ -16,8 +16,14 @@
     # copy & paste and fill variables
     cp .env.dist .env
     
-    # run docker project.
+    # run docker project
     make d.up
+    
+    # install wordpress dependencies
+    make composer.install
+    
+    # install wordpress
+    make wp.install
 ```
 2. Visit site [wp-docker-boilerplate.local](http://wp-docker-boilerplate.local)   
 
