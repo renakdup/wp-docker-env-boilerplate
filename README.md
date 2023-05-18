@@ -19,7 +19,7 @@
     # run docker project
     make d.up
     
-    # install wordpress dependencies
+    # install Composer dependencies
     make composer.install
     
     # install wordpress
