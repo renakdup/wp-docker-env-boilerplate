@@ -23,7 +23,7 @@
     make composer.install
     
     # install wordpress
-    make wp.install
+    make wp.core.download
 ```
 2. Visit site [wp-docker-boilerplate.local](http://wp-docker-boilerplate.local)   
 
