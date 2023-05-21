@@ -56,8 +56,16 @@ jobs:
       - name: Check http statuses of site
         uses: lakuapik/gh-actions-http-status@v1
         with:
-          sites: '["http://0.0.0.0:80", "http://0.0.0.0:80?status=404"]'
+          sites: '["http://127.0.0.1"]'
+          expected: '[200]'
+
+      - name: Check http statuses of site
+        uses: lakuapik/gh-actions-http-status@v1
+        with:
+          sites: '["http://127.0.0.1", "http://127.0.0.1/?status=404"]'
           expected: '[200, 404]'
+
+
 
 #TODO:: need to fix the issue:
 #(Failed)  HTTP Status for http://localhost is 000, expected 200
