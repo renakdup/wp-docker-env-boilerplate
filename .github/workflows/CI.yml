@@ -1,0 +1,74 @@
+name: Local Environment Deployment
+on:
+  push:
+    branches: [ "main", "add-github-actions" ]
+  pull_request:
+    types: [synchronize, opened, reopened]
+
+jobs:
+  check-local-environment-deployment:
+    runs-on: ubuntu-latest
+    environment: ${{ inputs.environment }}
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Install OS dependencies
+        run: |
+          sudo apt install -y make curl
+
+      - uses: KengoTODA/actions-setup-docker-compose@v1
+        with:
+          version: '2.18.1' # the full version of `docker-compose` command
+
+      - name: Check docker-composer
+        run: |
+          docker-compose --version
+
+      - name: Following instructions - "Prepare .env file"
+        run: |
+          cp .env.dist .env
+
+      - name: Following instructions - "Docker compose up"
+        run: |
+          make d.up
+
+      - name: Show docker containers
+        run: |
+          docker ps
+
+      - name: Site response is "200 OK"
+        run: |
+          status_code=$(curl -s -o /dev/null -w "%{http_code}" http://127.0.0.1/)
+          echo "HTTP Status Code: $status_code"
+          if [[ $status_code -eq 200 ]]; then
+            echo "Status is 200!"
+          else
+            echo "Status is not 200!"
+            exit 1
+          fi
+
+      - name: Site response is "404 Not Found"
+        run: |
+          status_code=$(curl -s -o /dev/null -w "%{http_code}" http://127.0.0.1/?status=404)
+          echo "HTTP Status Code: $status_code"
+          if [[ $status_code -eq 404 ]]; then
+            echo "Status is 404!"
+          else
+            echo "Status is not 404!"
+            exit 1
+          fi
+          
+
+#  TODO: fix GH error
+#  [RuntimeException]
+#  /app/vendor does not exist and could not be created.
+#
+#      - name: Following instructions - "Composer install"
+#        run: |
+#          make composer.install
+
+# TODO: fix GH error
+# Error: '/app/public/' is not writable by current user.
+#      - name: Following instructions - "WordPress download"
+#        run: |
+#          make wp.core.download
