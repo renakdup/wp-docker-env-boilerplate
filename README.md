@@ -12,20 +12,29 @@
 ## Instructions
 1. You need to add the string to `hosts` file your OS:  
 `127.0.0.1 	wp-docker-boilerplate.local`
-```bash 
-    # copy & paste and fill variables
-    cp .env.dist .env
-    
-    # run docker project
-    make d.up
-    
-    # install Composer dependencies
-    make composer.install
-    
-    # install wordpress
-    make wp.core.download
+2. Check that you use `docker compose standalone`.
+```bash
+# Check it by running command
+docker-compose --version
 ```
-2. Visit site [wp-docker-boilerplate.local](http://wp-docker-boilerplate.local)   
+You should see a message like this `Docker Compose version v2.18.1`.  
+In case you don't see the message, follow the instruction by the link
+https://docs.docker.com/compose/install/standalone/ and install `docker compose standalone`.
+3. Run next commands
+```bash 
+# copy & paste and fill variables
+cp .env.dist .env
+    
+# run docker project
+make d.up
+    
+# install wordpress dependencies
+make composer.install
+    
+# download wordpress
+make wp.core.download
+```
+4. Visit site [wp-docker-boilerplate.local](http://wp-docker-boilerplate.local)   
 
 ### Import/Export DB
 
