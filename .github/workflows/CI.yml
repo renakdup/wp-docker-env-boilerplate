@@ -37,9 +37,9 @@ jobs:
         run: |
           docker ps
 
-      - name: Follow instruction - Composer install
-        run: |
-          make composer.install
+#      - name: Follow instruction - Composer install
+#        run: |
+#          make composer.install
 
 #      - uses: isbang/compose-action@v1.4.1
 #        with:
@@ -48,7 +48,7 @@ jobs:
       - name: Check http statuses of site
         uses: lakuapik/gh-actions-http-status@v1
         with:
-          sites: '["http://localhost", "http://localhost?status=404"]'
+          sites: '["http://0.0.0.0:80", "http://0.0.0.0:80?status=404"]'
           expected: '[200, 404]'
 
 #TODO:: need to fix the issue:
