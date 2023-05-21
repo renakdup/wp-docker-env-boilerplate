@@ -1,6 +1,7 @@
 # Docker Environment Boilerplate for WordPress
 
-![Check Local Environment Deployment](https://github.com/renakdup/wp-docker-env-boilerplate/actions/workflows/CI/badge.svg?branch=add-github-actions)
+![Check Local Environment Deployment](https://github.com/renakdup/wp-docker-env-boilerplate/workflows/CI/badge.svg?branch=add-github-actions)
+
 
 ### Docker configuration:
 - Nginx 1.20
