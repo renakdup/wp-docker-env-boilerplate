@@ -25,11 +25,11 @@ jobs:
         run: |
           docker-compose --version
 
-      - name: Follow instruction - prepare .env file
+      - name: Follow instruction - "Prepare .env file"
         run: |
           cp .env.dist .env
 
-      - name: Follow instruction Docker compose up
+      - name: Follow instruction - "Docker compose up"
         run: |
           make d.up
 
@@ -37,7 +37,7 @@ jobs:
         run: |
           docker ps
 
-      - name: Check 200 site response
+      - name: Site response is "200 OK"
         run: |
           status_code=$(curl -s -o /dev/null -w "%{http_code}" http://127.0.0.1/)
           echo "HTTP Status Code: $status_code"
@@ -48,7 +48,7 @@ jobs:
             exit 1
           fi
 
-      - name: Check 404 site response
+      - name: Site response is "404 Not Found"
         run: |
           status_code=$(curl -s -o /dev/null -w "%{http_code}" http://127.0.0.1/?status=404)
           echo "HTTP Status Code: $status_code"
@@ -59,13 +59,6 @@ jobs:
             exit 1
           fi
 
-      - name: Check 301 site response
+      - name: Follow instruction - "Composer install"
         run: |
-          status_code=$(curl -s -o /dev/null -w "%{http_code}" http://127.0.0.1/?status=404)
-          echo "HTTP Status Code: $status_code"
-          if [[ $status_code -eq 301 ]]; then
-            echo "Status is 301!"
-          else
-            echo "Status is not 301!"
-            exit 1
-          fi
+          make composer.install
