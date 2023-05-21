@@ -58,3 +58,14 @@ jobs:
             echo "Status is not 404!"
             exit 1
           fi
+
+      - name: Check 301 site response
+        run: |
+          status_code=$(curl -s -o /dev/null -w "%{http_code}" http://127.0.0.1/?status=404)
+          echo "HTTP Status Code: $status_code"
+          if [[ $status_code -eq 301 ]]; then
+            echo "Status is 301!"
+          else
+            echo "Status is not 301!"
+            exit 1
+          fi
