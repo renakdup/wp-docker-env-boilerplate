@@ -15,7 +15,7 @@ jobs:
 
       - name: Install OS dependencies
         run: |
-          sudo apt install -y make
+          sudo apt install -y make curl
 
       - uses: KengoTODA/actions-setup-docker-compose@v1
         with:
@@ -37,7 +37,15 @@ jobs:
         run: |
           docker ps
 
-#      - name: Follow instruction - Composer install
+      - name: Check site
+        run: |
+          curl 127.0.0.1
+
+      - name: Check site
+        run: |
+          curl http://127.0.0.1/?status=404      
+
+      #      - name: Follow instruction - Composer install
 #        run: |
 #          make composer.install
 
