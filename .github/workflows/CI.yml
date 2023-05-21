@@ -17,10 +17,6 @@ jobs:
         run: |
           sudo apt install -y make
 
-      - name: Follow instruction
-        run: |
-          cp .env.dist .env
-
       - uses: KengoTODA/actions-setup-docker-compose@v1
         with:
           version: '2.18.1' # the full version of `docker-compose` command
@@ -29,15 +25,32 @@ jobs:
         run: |
           docker-compose --version
 
+      - name: Follow instruction - prepare .env file
+        run: |
+          cp .env.dist .env
+
+      - name: Follow instruction Docker compose up
+        run: |
+          make d.up
+
+      - name: Show docker containers
+        run: |
+          docker ps
+
+      - name: Follow instruction - Composer install
+        run: |
+          make composer.install
+
 #      - uses: isbang/compose-action@v1.4.1
 #        with:
 #          compose-file: "./docker-compose.yaml"
 
-#      - name: Check http statuses of site
-#        uses: lakuapik/gh-actions-http-status@v1
-#        with:
-#          sites: '["http://localhost", "http://localhost?status=404"]'
-#          expected: '[200, 404]'
+      - name: Check http statuses of site
+        uses: lakuapik/gh-actions-http-status@v1
+        with:
+          sites: '["http://localhost", "http://localhost?status=404"]'
+          expected: '[200, 404]'
+
 #TODO:: need to fix the issue:
 #(Failed)  HTTP Status for http://localhost is 000, expected 200
 #(Failed)  HTTP Status for http://localhost?status=404 is 000, expected 404
