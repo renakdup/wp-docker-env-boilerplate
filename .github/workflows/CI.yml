@@ -37,36 +37,24 @@ jobs:
         run: |
           docker ps
 
-      - name: Check site
+      - name: Check 200 site response
         run: |
-          curl 127.0.0.1
+          status_code=$(curl -s -o /dev/null -w "%{http_code}" http://127.0.0.1/)
+          echo "HTTP Status Code: $status_code"
+          if [[ $status_code -eq 200 ]]; then
+            echo "Status is 200!"
+          else
+            echo "Status is not 200!"
+            exit 1
+          fi
 
-      - name: Check site
+      - name: Check 404 site response
         run: |
-          curl http://127.0.0.1/?status=404      
-
-      #      - name: Follow instruction - Composer install
-#        run: |
-#          make composer.install
-
-#      - uses: isbang/compose-action@v1.4.1
-#        with:
-#          compose-file: "./docker-compose.yaml"
-
-      - name: Check http statuses of site
-        uses: lakuapik/gh-actions-http-status@v1
-        with:
-          sites: '["http://127.0.0.1"]'
-          expected: '[200]'
-
-      - name: Check http statuses of site
-        uses: lakuapik/gh-actions-http-status@v1
-        with:
-          sites: '["http://127.0.0.1", "http://127.0.0.1/?status=404"]'
-          expected: '[200, 404]'
-
-
-
-#TODO:: need to fix the issue:
-#(Failed)  HTTP Status for http://localhost is 000, expected 200
-#(Failed)  HTTP Status for http://localhost?status=404 is 000, expected 404
+          status_code=$(curl -s -o /dev/null -w "%{http_code}" http://127.0.0.1/?status=404)
+          echo "HTTP Status Code: $status_code"
+          if [[ $status_code -eq 404 ]]; then
+            echo "Status is 404!"
+          else
+            echo "Status is not 404!"
+            exit 1
+          fi
