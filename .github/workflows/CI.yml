@@ -68,6 +68,6 @@ jobs:
 #        run: |
 #          make composer.install
 
-      - name: Following instructions - "WordPress install"
+      - name: Following instructions - "WordPress download"
         run: |
-          make wp.core.install
+          make wp.core.download
