@@ -15,7 +15,7 @@ jobs:
 
       - name: Install OS dependencies
         run: |
-          apt install make
+          sudo apt install -y make
 
       - name: Follow instruction
         run: |
