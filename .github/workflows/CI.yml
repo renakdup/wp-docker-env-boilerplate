@@ -1,4 +1,4 @@
-name: Check Local Environment Deployment
+name: Local Environment Deployment
 on:
   push:
     branches: [ "main", "add-github-actions" ]

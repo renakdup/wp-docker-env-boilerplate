@@ -1,12 +1,16 @@
-# Docker Environment Boilerplate for WordPress
+# WordPress Docker Environment Boilerplate
 
-![Check Local Environment Deployment](https://github.com/renakdup/wp-docker-env-boilerplate/workflows/Check%20Local%20Environment%20Deployment/badge.svg?branch=add-github-actions)
+![Local Environment Deployment](https://github.com/renakdup/wp-docker-env-boilerplate/workflows/Check%20Local%20Environment%20Deployment/badge.svg)
+
+---
+
+You can use this boilerplate for developing WordPress themes and plugins on your local machine by using Docker in one click.
 
 
 ### Docker configuration:
 - Nginx 1.20
 - PHP 7.4
-- Composer > 2.1  
+- Composer > 2.1
 - MySQL 5.6
 - PhpMyAdmin 5
 - Node 16.14.2
