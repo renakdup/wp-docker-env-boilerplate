@@ -6,7 +6,7 @@ on:
     types: [synchronize, opened, reopened]
 
 jobs:
-  test:
+  check-local-environment-work:
     runs-on: ubuntu-latest
     environment: ${{ inputs.environment }}
     steps:
@@ -70,4 +70,4 @@ jobs:
 
       - name: Following instructions - "WordPress install"
         run: |
-          make wp.install
+          make wp.core.install
