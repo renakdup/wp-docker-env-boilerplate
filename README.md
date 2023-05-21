@@ -1,5 +1,7 @@
 # Docker Environment Boilerplate for WordPress
 
+![Check Local Environment Deployment](https://github.com/github/docs/actions/workflows/CI.yml/badge.svg?branch=add-github-actions)
+
 ### Docker configuration:
 - Nginx 1.20
 - PHP 7.4

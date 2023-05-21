@@ -6,7 +6,7 @@ on:
     types: [synchronize, opened, reopened]
 
 jobs:
-  check-local-environment-work:
+  check-local-environment-deployment:
     runs-on: ubuntu-latest
     environment: ${{ inputs.environment }}
     steps:
