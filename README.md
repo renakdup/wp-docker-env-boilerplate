@@ -28,7 +28,7 @@ cp .env.dist .env
 # run docker project
 make d.up
     
-# install wordpress dependencies
+# install dependencies
 make composer.install
     
 # download wordpress
