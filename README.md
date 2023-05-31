@@ -74,7 +74,6 @@ create `docker-compose.override.yaml` in the project and add following lines:
 services:
   mysql:
     platform: linux/amd64
-    image: mysql:5.6 #or any other version
 ``` 
  
 

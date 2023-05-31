@@ -8,4 +8,4 @@ RUN usermod -u $UID $USER && groupmod -g $GUID $USER
 # Configuring OS
 RUN echo 'alias ll="ls -l --color"' >>  /etc/bash.bashrc
 
-WORKDIR backup
+WORKDIR /backup
