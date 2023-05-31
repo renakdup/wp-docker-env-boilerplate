@@ -69,7 +69,7 @@ If you want change domain, you need to change `server_name` in `./docker/nginxco
 If you get next error on MacOS  
 ```failed to solve with frontend dockerfile.v0: failed to create LLB definition: no match for platform in manifest sha256:20575ecebe6216036d25dab5903808211f1e9ba63dc7825ac20cb975e34cfcae: not found```
 
-create `docker-compose.override.yml` in the project and add following lines:
+create `docker-compose.override.yaml` in the project and add following lines:
 ```
 services:
   mysql:
