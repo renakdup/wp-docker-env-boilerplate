@@ -65,7 +65,7 @@ mysql.connect:
 	#docker-compose exec mysql mysql -uroot -p${MYSQL_ROOT_PASSWORD} ${MYSQL_DATABASE}
 
 mysql.client.connect:
-	docker-compose exec mysql sh -c 'echo "Import db" && mysql -u${DB_USER} -p${DB_PASSWORD}'
+	docker-compose exec mysql sh -c 'echo "Import db" && mysql -u${MYSQL_USER} -p${MYSQL_PASSWORD}'
 
 mysql.export:
 	docker-compose exec mysql bash -c "mysqldump -uroot -p${MYSQL_ROOT_PASSWORD} ${MYSQL_DATABASE} > backup-`date +"\%Y.\%m.\%d_\%H-\%M-\%s"`.sql \
