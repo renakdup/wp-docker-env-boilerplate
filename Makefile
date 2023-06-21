@@ -11,6 +11,7 @@ d:
 	docker $(filter-out $@,$(MAKECMDGOALS))
 
 d.up:
+	sh ./dev/sh/check-m1.sh
 	docker-compose up -d
 
 d.ps:

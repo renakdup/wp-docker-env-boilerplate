@@ -3,16 +3,16 @@ version: '3'
 services:
   nginx:
     restart: always
-    build: ./docker/nginx
+    build: ./dev/docker/nginx
     ports:
       - $NGINX_PORT:80
     environment:
       NGINX_SITE_DOMAIN: $NGINX_SITE_DOMAIN
       SERVICE: php
     volumes:
-      - ./:/app
-      - ./docker/nginx/nginx.conf:/etc/nginx/nginx.conf
-      - ./docker/nginx/templates:/etc/nginx/templates
+      - ./:/var/www/${NGINX_SITE_DOMAIN}/
+      - ./dev/docker/nginx/nginx.conf:/etc/nginx/nginx.conf
+      - ./dev/docker/nginx/templates:/etc/nginx/templates
     depends_on:
       - php
     networks:
@@ -21,20 +21,20 @@ services:
   php:
     restart: always
     build:
-      context: ./docker/php
+      context: ./dev/docker/php
       args:
         UID: $UID
         GUID: $GUID
         PHP_VER: $PHP_VER
     volumes:
-      - ./:/app
+      - ./:/var/www/${NGINX_SITE_DOMAIN}/
     networks:
       - rd-network
 
   mysql:
     restart: always
     build:
-      context: ./docker/mysql
+      context: ./dev/docker/mysql
       args:
         UID: $UID
         GUID: $GUID
@@ -46,7 +46,7 @@ services:
       MYSQL_ROOT_PASSWORD: $MYSQL_ROOT_PASSWORD
     volumes:
       - mysql-data:/var/lib/mysql
-      - ./docker/mysql/backup/:/backup
+      - ./dev/docker/mysql/backup/:/backup
     ports:
       - $MYSQL_PORT:3307
     networks:
