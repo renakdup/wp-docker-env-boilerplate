@@ -34,18 +34,23 @@ RUN apt-get -y install \
     git
 
 # PHP Extensions
-RUN docker-php-ext-install \
-    gd \
-    mysqli \
-    pdo \
-    #pdo_pgsql \
-    #pgsql \
-    pdo_mysql \
-    mbstring \
-    tokenizer \
-    opcache \
-    exif \
-    zip
+RUN curl -sSLf \
+        -o /usr/local/bin/install-php-extensions \
+        https://github.com/mlocati/docker-php-extension-installer/releases/latest/download/install-php-extensions && \
+    chmod +x /usr/local/bin/install-php-extensions && \
+    install-php-extensions \
+      gmagick \
+      gd \
+      mysqli \
+      pdo \
+      #pdo_pgsql \
+      #pgsql \
+      pdo_mysql \
+      mbstring \
+      tokenizer \
+      opcache \
+      exif \
+      zip
     
 # fix memory limit for php-cli
 RUN echo 'memory_limit = -1' >> /usr/local/etc/php/conf.d/docker-php-memlimit.ini
