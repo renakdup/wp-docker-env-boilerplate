@@ -1,6 +1,6 @@
-# WordPress Docker Environment Boilerplate
+#  🐳 WordPress Docker Environment Boilerplate
 
-![Local Environment Deployment](https://github.com/renakdup/wp-docker-env-boilerplate/workflows/Check%20Local%20Environment%20Deployment/badge.svg)
+# ![Local Environment Deployment](https://github.com/renakdup/wp-docker-env-boilerplate/workflows/Check%20Local%20Environment%20Deployment/badge.svg)
 
 ---
 
